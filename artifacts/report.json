@@ -1,0 +1,28 @@
+{
+ "base_rate": 0.15,
+ "n_test_rows": 29200,
+ "pharmacies": 18,
+ "medicines": 40,
+ "days": 2192,
+ "models": {
+  "Rule: out today = out tomorrow": {
+   "pr_auc": 0.582,
+   "roc_auc": 0.841
+  },
+  "Rule: fewer days of cover = higher risk": {
+   "pr_auc": 0.745,
+   "roc_auc": 0.956
+  },
+  "Logistic regression (L2 regularized)": {
+   "pr_auc": 0.994,
+   "roc_auc": 1.0
+  },
+  "MedRadar HistGradientBoosting (Calibrated)": {
+   "pr_auc": 0.994,
+   "roc_auc": 1.0
+  }
+ },
+ "brier": 0.0001,
+ "winning_algorithm": "L2 Logistic Regression (Standard Scaled)",
+ "regression_best_r2": 0.8569
+}

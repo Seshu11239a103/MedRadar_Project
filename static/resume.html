@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Resume</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f2f4f7;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .resume {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header */
+        .header {
+            background: #1f2937;
+            color: white;
+            padding: 35px 45px;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            margin-bottom: 5px;
+        }
+
+        .header h2 {
+            font-size: 18px;
+            font-weight: normal;
+            color: #d1d5db;
+            margin-bottom: 15px;
+        }
+
+        .contact {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 14px;
+        }
+
+        .contact a {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Main content */
+        .content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+        }
+
+        .main {
+            padding: 35px 40px;
+        }
+
+        .sidebar {
+            background: #f8fafc;
+            padding: 35px 30px;
+            border-left: 1px solid #e5e7eb;
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        section h3 {
+            font-size: 18px;
+            color: #1f2937;
+            border-bottom: 2px solid #2563eb;
+            padding-bottom: 6px;
+            margin-bottom: 15px;
+        }
+
+        .summary {
+            color: #555;
+        }
+
+        /* Experience */
+        .job {
+            margin-bottom: 22px;
+        }
+
+        .job-title {
+            font-size: 17px;
+            font-weight: bold;
+            color: #111827;
+        }
+
+        .company {
+            color: #2563eb;
+            font-weight: bold;
+        }
+
+        .date {
+            font-size: 13px;
+            color: #777;
+            margin: 3px 0 8px;
+        }
+
+        .job ul {
+            padding-left: 20px;
+        }
+
+        .job li {
+            margin-bottom: 5px;
+        }
+
+        /* Education */
+        .education-item {
+            margin-bottom: 18px;
+        }
+
+        .education-item h4 {
+            font-size: 16px;
+            color: #111827;
+        }
+
+        .education-item p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Skills */
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill {
+            background: #e5edff;
+            color: #1d4ed8;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        /* Projects */
+        .project {
+            margin-bottom: 18px;
+        }
+
+        .project h4 {
+            color: #111827;
+            margin-bottom: 4px;
+        }
+
+        /* Responsive */
+        @media (max-width: 700px) {
+            .resume {
+                margin: 0;
+            }
+
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                border-left: none;
+                border-top: 1px solid #e5e7eb;
+            }
+
+            .header,
+            .main,
+            .sidebar {
+                padding: 25px;
+            }
+
+            .header h1 {
+                font-size: 30px;
+            }
+        }
+
+        /* Print */
+        @media print {
+            body {
+                background: white;
+            }
+
+            .resume {
+                margin: 0;
+                box-shadow: none;
+                max-width: 100%;
+            }
+
+            .header {
+                background: #1f2937 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="resume">
+
+    <!-- HEADER -->
+    <header class="header">
+        <h1>Your Name</h1>
+        <h2>Web Developer | Software Engineer</h2>
+
+        <div class="contact">
+            <span>📍 Chennai, India</span>
+            <span>📞 +91 98765 43210</span>
+            <span>✉️ your.email@example.com</span>
+            <span>
+                <a href="https://linkedin.com/" target="_blank">
+                    LinkedIn
+                </a>
+            </span>
+            <span>
+                <a href="https://github.com/" target="_blank">
+                    GitHub
+                </a>
+            </span>
+        </div>
+    </header>
+
+    <div class="content">
+
+        <!-- MAIN COLUMN -->
+        <main class="main">
+
+            <!-- PROFILE -->
+            <section>
+                <h3>Professional Summary</h3>
+
+                <p class="summary">
+                    Motivated and detail-oriented professional with experience
+                    in web development and software engineering. Skilled in
+                    building responsive websites, developing applications, and
+                    solving technical problems. Passionate about learning new
+                    technologies and creating efficient digital solutions.
+                </p>
+            </section>
+
+            <!-- EXPERIENCE -->
+            <section>
+                <h3>Work Experience</h3>
+
+                <div class="job">
+                    <div class="job-title">
+                        Web Developer
+                    </div>
+
+                    <div class="company">
+                        ABC Technologies
+                    </div>
+
+                    <div class="date">
+                        January 2024 – Present
+                    </div>
+
+                    <ul>
+                        <li>
+                            Developed responsive websites using HTML, CSS,
+                            JavaScript, and modern web technologies.
+                        </li>
+                        <li>
+                            Improved website performance and user experience.
+                        </li>
+                        <li>
+                            Collaborated with designers and developers to
+                            deliver web projects.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="job">
+                    <div class="job-title">
+                        Junior Developer
+                    </div>
+
+                    <div class="company">
+                        XYZ Solutions
+                    </div>
+
+                    <div class="date">
+                        June 2022 – December 2023
+                    </div>
+
+                    <ul>
+                        <li>
+                            Built and maintained web applications.
+                        </li>
+                        <li>
+                            Fixed bugs and implemented new features.
+                        </li>
+                        <li>
+                            Worked with databases and REST APIs.
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- PROJECTS -->
+            <section>
+                <h3>Projects</h3>
+
+                <div class="project">
+                    <h4>Personal Portfolio Website</h4>
+                    <p>
+                        Designed and developed a responsive personal portfolio
+                        using HTML, CSS, and JavaScript.
+                    </p>
+                </div>
+
+                <div class="project">
+                    <h4>Task Management Application</h4>
+                    <p>
+                        Created a task management application that allows users
+                        to create, update, and organize tasks.
+                    </p>
+                </div>
+            </section>
+
+            <!-- EDUCATION -->
+            <section>
+                <h3>Education</h3>
+
+                <div class="education-item">
+                    <h4>Bachelor of Computer Applications</h4>
+                    <p>ABC University</p>
+                    <p>2020 – 2023</p>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <!-- SKILLS -->
+            <section>
+                <h3>Skills</h3>
+
+                <div class="skills">
+                    <span class="skill">HTML</span>
+                    <span class="skill">CSS</span>
+                    <span class="skill">JavaScript</span>
+                    <span class="skill">React</span>
+                    <span class="skill">Python</span>
+                    <span class="skill">Java</span>
+                    <span class="skill">SQL</span>
+                    <span class="skill">Git</span>
+                    <span class="skill">GitHub</span>
+                </div>
+            </section>
+
+            <!-- CERTIFICATIONS -->
+            <section>
+                <h3>Certifications</h3>
+
+                <div class="education-item">
+                    <h4>Web Development</h4>
+                    <p>Coursera</p>
+                    <p>2024</p>
+                </div>
+
+                <div class="education-item">
+                    <h4>Python Programming</h4>
+                    <p>Udemy</p>
+                    <p>2023</p>
+                </div>
+            </section>
+
+            <!-- LANGUAGES -->
+            <section>
+                <h3>Languages</h3>
+
+                <p>English</p>
+                <p>Tamil</p>
+                <p>Hindi</p>
+            </section>
+
+            <!-- INTERESTS -->
+            <section>
+                <h3>Interests</h3>
+
+                <p>💻 Technology</p>
+                <p>📚 Reading</p>
+                <p>🎨 Design</p>
+                <p>🏏 Sports</p>
+            </section>
+
+        </aside>
+
+    </div>
+</div>
+
+</body>
+</html>

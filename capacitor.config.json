@@ -1,0 +1,10 @@
+{
+  "appId": "com.medradar.kanchipuram",
+  "appName": "MedRadar",
+  "webDir": "static",
+  "bundledWebRuntime": false,
+  "server": {
+    "url": "https://0ucf2c9qc1.brewpage.app/",
+    "cleartext": true
+  }
+}

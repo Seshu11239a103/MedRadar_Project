@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lord Ayyappa - SVG Art</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #120800;
+        font-family: Arial, sans-serif;
+    }
+
+    .temple-frame {
+        width: min(95vw, 700px);
+        padding: 20px;
+        background: linear-gradient(#4b1800, #160700);
+        border: 8px solid #d99a22;
+        border-radius: 12px;
+        box-shadow:
+            0 0 30px #ff9d00,
+            inset 0 0 20px #000;
+    }
+
+    svg {
+        width: 100%;
+        height: auto;
+        display: block;
+        background:
+            radial-gradient(circle, #ffb52e 0%, #7c2700 45%, #160600 100%);
+        border-radius: 6px;
+    }
+
+    .title {
+        text-align: center;
+        color: #ffd35a;
+        font-size: 28px;
+        font-weight: bold;
+        margin-top: 15px;
+        text-shadow: 0 0 10px #ff7300;
+    }
+
+    .subtitle {
+        text-align: center;
+        color: #fff0b0;
+        margin-top: 5px;
+        font-size: 16px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="temple-frame">
+
+<svg viewBox="0 0 600 750"
+     xmlns="http://www.w3.org/2000/svg">
+
+    <defs>
+
+        <!-- Golden glow -->
+        <radialGradient id="halo">
+            <stop offset="0%" stop-color="#fff6a0"/>
+            <stop offset="40%" stop-color="#ffc928"/>
+            <stop offset="75%" stop-color="#ff7b00"/>
+            <stop offset="100%" stop-color="#8b2600"/>
+        </radialGradient>
+
+        <!-- Skin -->
+        <radialGradient id="skin">
+            <stop offset="0%" stop-color="#d99a58"/>
+            <stop offset="100%" stop-color="#7d3d1d"/>
+        </radialGradient>
+
+        <!-- Gold -->
+        <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#fff0a0"/>
+            <stop offset="35%" stop-color="#ffd23c"/>
+            <stop offset="70%" stop-color="#d89000"/>
+            <stop offset="100%" stop-color="#8c4b00"/>
+        </linearGradient>
+
+        <!-- Cloth -->
+        <linearGradient id="cloth" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#e67e22"/>
+            <stop offset="100%" stop-color="#6e1700"/>
+        </linearGradient>
+
+        <!-- Shadow -->
+        <filter id="shadow">
+            <feGaussianBlur stdDeviation="7"/>
+        </filter>
+
+    </defs>
+
+
+    <!-- ========================= -->
+    <!-- DIVINE HALO -->
+    <!-- ========================= -->
+
+    <circle cx="300" cy="270"
+            r="220"
+            fill="url(#halo)"
+            opacity="0.9"/>
+
+    <circle cx="300" cy="270"
+            r="185"
+            fill="none"
+            stroke="#ffe36e"
+            stroke-width="8"
+            opacity="0.8"/>
+
+    <circle cx="300" cy="270"
+            r="205"
+            fill="none"
+            stroke="#ffbd24"
+            stroke-width="3"/>
+
+
+    <!-- ========================= -->
+    <!-- DECORATIVE SUN RAYS -->
+    <!-- ========================= -->
+
+    <g stroke="#ffd54a" stroke-width="5" opacity="0.7">
+
+        <line x1="300" y1="25" x2="300" y2="65"/>
+        <line x1="300" y1="475" x2="300" y2="515"/>
+
+        <line x1="55" y1="270" x2="95" y2="270"/>
+        <line x1="505" y1="270" x2="545" y2="270"/>
+
+        <line x1="125" y1="95" x2="153" y2="123"/>
+        <line x1="447" y1="417" x2="475" y2="445"/>
+
+        <line x1="475" y1="95" x2="447" y2="123"/>
+        <line x1="153" y1="417" x2="125" y2="445"/>
+
+    </g>
+
+
+    <!-- ========================= -->
+    <!-- HEAD / HAIR -->
+    <!-- ========================= -->
+
+    <ellipse cx="300" cy="235"
+             rx="82" ry="96"
+             fill="#160d09"/>
+
+    <!-- Face -->
+    <ellipse cx="300" cy="265"
+             rx="66" ry="82"
+             fill="url(#skin)"
+             stroke="#54240f"
+             stroke-width="3"/>
+
+
+    <!-- Hair -->
+    <path d="
+        M235 245
+        Q225 170 300 155
+        Q375 170 365 245
+        Q350 205 330 195
+        Q300 215 270 195
+        Q250 210 235 245
+        Z"
+        fill="#170b07"/>
+
+
+    <!-- ========================= -->
+    <!-- CROWN -->
+    <!-- ========================= -->
+
+    <path d="
+        M247 193
+        L260 145
+        L278 164
+        L300 125
+        L322 164
+        L340 145
+        L353 193
+        Z"
+        fill="url(#gold)"
+        stroke="#7d4300"
+        stroke-width="4"/>
+
+    <circle cx="300" cy="143"
+            r="9"
+            fill="#e33b20"
+            stroke="#ffd75a"
+            stroke-width="4"/>
+
+
+    <!-- ========================= -->
+    <!-- FOREHEAD -->
+    <!-- ========================= -->
+
+    <line x1="275" y1="235"
+          x2="325" y2="235"
+          stroke="#fff3cf"
+          stroke-width="7"
+          stroke-linecap="round"/>
+
+    <circle cx="300" cy="251"
+            r="7"
+            fill="#c91818"/>
+
+
+    <!-- ========================= -->
+    <!-- EYES -->
+    <!-- ========================= -->
+
+    <path d="M260 268 Q278 255 292 269"
+          fill="none"
+          stroke="#35140a"
+          stroke-width="5"/>
+
+    <path d="M308 269 Q322 255 340 268"
+          fill="none"
+          stroke="#35140a"
+          stroke-width="5"/>
+
+    <ellipse cx="277" cy="270"
+             rx="5" ry="4"
+             fill="#120805"/>
+
+    <ellipse cx="323" cy="270"
+             rx="5" ry="4"
+             fill="#120805"/>
+
+
+    <!-- ========================= -->
+    <!-- NOSE -->
+    <!-- ========================= -->
+
+    <path d="
+        M300 270
+        Q292 300 300 304
+        Q308 300 300 270"
+        fill="none"
+        stroke="#713619"
+        stroke-width="4"/>
+
+
+    <!-- ========================= -->
+    <!-- SMILE -->
+    <!-- ========================= -->
+
+    <path d="
+        M278 320
+        Q300 335 322 320"
+        fill="none"
+        stroke="#55170d"
+        stroke-width="5"
+        stroke-linecap="round"/>
+
+
+    <!-- ========================= -->
+    <!-- EARRINGS -->
+    <!-- ========================= -->
+
+    <circle cx="238" cy="282"
+            r="15"
+            fill="url(#gold)"
+            stroke="#7d4300"
+            stroke-width="4"/>
+
+    <circle cx="362" cy="282"
+            r="15"
+            fill="url(#gold)"
+            stroke="#7d4300"
+            stroke-width="4"/>
+
+
+    <!-- ========================= -->
+    <!-- NECK -->
+    <!-- ========================= -->
+
+    <rect x="275" y="335"
+          width="50"
+          height="65"
+          rx="20"
+          fill="url(#skin)"/>
+
+
+    <!-- ========================= -->
+    <!-- BODY -->
+    <!-- ========================= -->
+
+    <path d="
+        M250 365
+        Q300 340 350 365
+        Q390 390 425 485
+        L175 485
+        Q210 390 250 365
+        Z"
+        fill="url(#skin)"
+        stroke="#5d260e"
+        stroke-width="4"/>
+
+
+    <!-- ========================= -->
+    <!-- GOLDEN NECKLACES -->
+    <!-- ========================= -->
+
+    <path d="
+        M255 370
+        Q300 420 345 370"
+        fill="none"
+        stroke="url(#gold)"
+        stroke-width="12"/>
+
+    <path d="
+        M240 390
+        Q300 460 360 390"
+        fill="none"
+        stroke="url(#gold)"
+        stroke-width="7"/>
+
+    <circle cx="300" cy="423"
+            r="16"
+            fill="url(#gold)"
+            stroke="#8b4c00"
+            stroke-width="4"/>
+
+
+    <!-- ========================= -->
+    <!-- CROSS-LEGGED CLOTH -->
+    <!-- ========================= -->
+
+    <path d="
+        M175 485
+        Q225 450 300 485
+        Q375 450 425 485
+        L480 580
+        Q390 620 300 575
+        Q210 620 120 580
+        Z"
+        fill="url(#cloth)"
+        stroke="#571400"
+        stroke-width="5"/>
+
+
+    <!-- Cloth folds -->
+    <path d="M205 500 Q250 545 275 580"
+          fill="none"
+          stroke="#f29a35"
+          stroke-width="8"/>
+
+    <path d="M395 500 Q350 545 325 580"
+          fill="none"
+          stroke="#f29a35"
+          stroke-width="8"/>
+
+
+    <!-- ========================= -->
+    <!-- CROSSED LEGS -->
+    <!-- ========================= -->
+
+    <path d="
+        M190 535
+        Q250 560 300 570
+        Q350 560 410 535
+        Q390 610 300 620
+        Q210 610 190 535
+        Z"
+        fill="#8b471f"/>
+
+
+    <!-- Feet -->
+    <ellipse cx="225" cy="590"
+             rx="55" ry="22"
+             fill="url(#skin)"
+             transform="rotate(12 225 590)"/>
+
+    <ellipse cx="375" cy="590"
+             rx="55" ry="22"
+             fill="url(#skin)"
+             transform="rotate(-12 375 590)"/>
+
+
+    <!-- ========================= -->
+    <!-- HANDS -->
+    <!-- ========================= -->
+
+    <ellipse cx="185" cy="410"
+             rx="25" ry="40"
+             fill="url(#skin)"
+             transform="rotate(-25 185 410)"/>
+
+    <ellipse cx="415" cy="410"
+             rx="25" ry="40"
+             fill="url(#skin)"
+             transform="rotate(25 415 410)"/>
+
+
+    <!-- ========================= -->
+    <!-- SACRED BELL -->
+    <!-- ========================= -->
+
+    <g transform="translate(300 510)">
+
+        <path d="
+            M-18 -20
+            Q0 -40 18 -20
+            L25 15
+            L-25 15
+            Z"
+            fill="url(#gold)"
+            stroke="#704000"
+            stroke-width="4"/>
+
+        <circle cx="0" cy="23"
+                r="6"
+                fill="#d18b00"/>
+
+    </g>
+
+
+    <!-- ========================= -->
+    <!-- BOTTOM TEMPLE FLOOR -->
+    <!-- ========================= -->
+
+    <path d="
+        M50 625
+        L550 625
+        L575 700
+        L25 700
+        Z"
+        fill="#421306"/>
+
+    <path d="M50 650 L550 650"
+          stroke="#d9901b"
+          stroke-width="5"/>
+
+    <path d="M80 680 L520 680"
+          stroke="#a85c0b"
+          stroke-width="4"/>
+
+
+    <!-- ========================= -->
+    <!-- DECORATIVE LAMPS -->
+    <!-- ========================= -->
+
+    <g fill="#ffdc54">
+
+        <circle cx="75" cy="620" r="8"/>
+        <circle cx="105" cy="620" r="8"/>
+        <circle cx="495" cy="620" r="8"/>
+        <circle cx="525" cy="620" r="8"/>
+
+    </g>
+
+</svg>
+
+<div class="title">
+    ॐ स्वामीये शरणम् अय्यप्पा
+</div>
+
+<div class="subtitle">
+    Swamiye Saranam Ayyappa
+</div>
+
+</div>
+
+</body>
+</html>

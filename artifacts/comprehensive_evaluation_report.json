@@ -1,0 +1,168 @@
+{
+  "execution_timestamp": "2026-11-17T13:26:49.043747",
+  "dataset_provenance": {
+    "global_records": 175360,
+    "features_engineered": 28,
+    "test_records_2025": 29200,
+    "stockout_base_rate_pct": 0.1541095890410959
+  },
+  "regression_evaluation": [
+    {
+      "model_name": "Ordinary Least Squares (OLS)",
+      "mae": 97.984,
+      "rmse": 128.009,
+      "r2": 0.7836,
+      "adj_r2": 0.7834,
+      "mape_pct": 30.82,
+      "training_time_sec": 0.1
+    },
+    {
+      "model_name": "Ridge Regression (L2 Regularized)",
+      "mae": 97.984,
+      "rmse": 128.009,
+      "r2": 0.7836,
+      "adj_r2": 0.7834,
+      "mape_pct": 30.82,
+      "training_time_sec": 0.29
+    },
+    {
+      "model_name": "Lasso Regression (L1 Regularized)",
+      "mae": 97.975,
+      "rmse": 128.001,
+      "r2": 0.7836,
+      "adj_r2": 0.7834,
+      "mape_pct": 30.82,
+      "training_time_sec": 0.75
+    },
+    {
+      "model_name": "Random Forest Regressor (Trees=100)",
+      "mae": 74.853,
+      "rmse": 117.799,
+      "r2": 0.8167,
+      "adj_r2": 0.8166,
+      "mape_pct": 23.41,
+      "training_time_sec": 2.63
+    },
+    {
+      "model_name": "Histogram Gradient Boosting Regressor",
+      "mae": 66.216,
+      "rmse": 104.096,
+      "r2": 0.8569,
+      "adj_r2": 0.8568,
+      "mape_pct": 20.06,
+      "training_time_sec": 0.92
+    }
+  ],
+  "winning_regressor": {
+    "name": "Histogram Gradient Boosting Regressor",
+    "r2_score": 0.8569,
+    "rmse": 104.096,
+    "mae": 66.216
+  },
+  "classification_evaluation": [
+    {
+      "model_name": "Baseline Decision Tree",
+      "roc_auc": 0.9999,
+      "pr_auc": 0.9114,
+      "accuracy": 0.9997,
+      "precision": 0.9091,
+      "recall": 0.8889,
+      "f1_score": 0.8989,
+      "brier_score": 0.0002,
+      "training_time_sec": 0.88
+    },
+    {
+      "model_name": "L2 Logistic Regression (Standard Scaled)",
+      "roc_auc": 1.0,
+      "pr_auc": 0.9941,
+      "accuracy": 0.9999,
+      "precision": 0.9556,
+      "recall": 0.9556,
+      "f1_score": 0.9556,
+      "brier_score": 0.0001,
+      "training_time_sec": 0.3
+    },
+    {
+      "model_name": "Random Forest Classifier (Ensemble)",
+      "roc_auc": 0.9999,
+      "pr_auc": 0.945,
+      "accuracy": 0.9996,
+      "precision": 0.925,
+      "recall": 0.8222,
+      "f1_score": 0.8706,
+      "brier_score": 0.0003,
+      "training_time_sec": 2.54
+    },
+    {
+      "model_name": "HistGradientBoostingClassifier (LightGBM equivalent)",
+      "roc_auc": 0.9997,
+      "pr_auc": 0.7584,
+      "accuracy": 0.9991,
+      "precision": 0.7436,
+      "recall": 0.6444,
+      "f1_score": 0.6905,
+      "brier_score": 0.0006,
+      "training_time_sec": 1.15
+    }
+  ],
+  "winning_classifier": {
+    "name": "L2 Logistic Regression (Standard Scaled)",
+    "roc_auc": 1.0,
+    "pr_auc": 0.9941,
+    "f1_score": 0.9556,
+    "brier_score_loss_calibrated": 0.0001,
+    "accuracy": 0.9999,
+    "precision": 0.9556,
+    "recall": 0.9556
+  },
+  "top_predictive_features": [
+    {
+      "feature": "stock_level",
+      "importance": 0.3674
+    },
+    {
+      "feature": "rolling_7d_mean",
+      "importance": 0.3302
+    },
+    {
+      "feature": "rolling_7d_std",
+      "importance": 0.1786
+    },
+    {
+      "feature": "lag_1_demand",
+      "importance": 0.0309
+    },
+    {
+      "feature": "lag_7_demand",
+      "importance": 0.0259
+    },
+    {
+      "feature": "unit_price",
+      "importance": 0.0102
+    },
+    {
+      "feature": "expiry_days_remaining",
+      "importance": 0.0097
+    },
+    {
+      "feature": "month",
+      "importance": 0.008
+    },
+    {
+      "feature": "sin_month",
+      "importance": 0.0076
+    },
+    {
+      "feature": "covid_flag",
+      "importance": 0.0043
+    },
+    {
+      "feature": "sin_dow",
+      "importance": 0.0041
+    },
+    {
+      "feature": "day_of_week",
+      "importance": 0.0038
+    }
+  ]
+}

@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff & Admin Login | MedRadar Kanchipuram</title>
+  <link rel="icon" type="image/svg+xml" href="/icon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: rgba(17, 24, 39, 0.85);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --primary: #10b981;
+      --accent: #0ea5e9;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --input-bg: rgba(15, 23, 42, 0.8);
+      --input-border: rgba(255, 255, 255, 0.15);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .bg-gradient {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: 
+        radial-gradient(circle at 15% 20%, rgba(16, 185, 129, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(14, 165, 233, 0.08) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .top-nav {
+      position: relative;
+      z-index: 10;
+      padding: 16px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--card-border);
+      background: rgba(9, 13, 22, 0.85);
+      backdrop-filter: blur(12px);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .brand-logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #10b981, #0ea5e9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 18px;
+      color: #fff;
+    }
+    .brand-text h1 { font-size: 17px; font-weight: 700; }
+    .brand-text span { font-size: 12px; color: var(--text-muted); }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      background: transparent;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-ghost:hover { background: rgba(255, 255, 255, 0.05); }
+    .main-wrap {
+      position: relative;
+      z-index: 5;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 20px;
+    }
+    .login-card {
+      width: 100%;
+      max-width: 440px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 36px 32px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(16px);
+      position: relative;
+      overflow: hidden;
+    }
+    .login-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, #10b981, #0ea5e9);
+    }
+    .header-section { text-align: center; margin-bottom: 26px; }
+    .header-section h2 { font-size: 22px; font-weight: 800; margin-bottom: 6px; }
+    .header-section p { font-size: 13px; color: var(--text-muted); }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; color: #cbd5e1; }
+    .form-input {
+      width: 100%;
+      padding: 12px 14px;
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: 10px;
+      color: #fff;
+      font-size: 14px;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+    }
+    .btn-submit {
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 12px;
+      border: none;
+      background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: 0 4px 18px rgba(16, 185, 129, 0.35);
+      margin-top: 8px;
+    }
+    .btn-submit:hover {
+      box-shadow: 0 6px 24px rgba(6, 182, 212, 0.45);
+      transform: translateY(-1px);
+    }
+    .alert-banner {
+      display: none;
+      padding: 11px 14px;
+      border-radius: 8px;
+      margin-bottom: 18px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .alert-banner.error { display: flex; background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5; }
+    .alert-banner.success { display: flex; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: #6ee7b7; }
+    .db-note {
+      margin-top: 22px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .db-note a { color: #38bdf8; text-decoration: none; font-weight: 600; }
+    .db-note a:hover { text-decoration: underline; }
+  
+
+
+
+/* =============================================================================
+   MEDRADAR v2 - ADVANCED 3D SPATIAL DESIGN SYSTEM & TACTILE DEPTH ENGINE
+   ============================================================================= */
+
+/* 1. Spatial Perspective Canvas */
+#app-layout, .main-wrap, .main-viewport, .modal-backdrop {
+  perspective: 1400px;
+}
+
+/* 2. Floating 3D Radar Brand Icon */
+@keyframes floatRadar3D {
+  0%, 100% {
+    transform: translateY(0px) rotateY(0deg) rotateX(0deg) scale(1);
+    box-shadow: 0 8px 24px rgba(14, 165, 233, 0.45), inset 0 2px 4px rgba(255, 255, 255, 0.5);
+  }
+  50% {
+    transform: translateY(-7px) rotateY(12deg) rotateX(-6deg) scale(1.04);
+    box-shadow: 0 16px 36px rgba(14, 165, 233, 0.65), 0 0 20px rgba(56, 189, 248, 0.4), inset 0 2px 5px rgba(255, 255, 255, 0.7);
+  }
+}
+
+.brand-radar {
+  animation: floatRadar3D 4.5s ease-in-out infinite !important;
+  transform-style: preserve-3d !important;
+  border: 1.5px solid rgba(56, 189, 248, 0.6) !important;
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.25) 0%, rgba(3, 105, 161, 0.45) 100%) !important;
+  position: relative;
+}
+
+.brand-radar::after {
+  content: '';
+  position: absolute;
+  top: -4px; left: -4px; right: -4px; bottom: -4px;
+  border-radius: 50%;
+  border: 1px dashed rgba(56, 189, 248, 0.35);
+  animation: radarSpin 12s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes radarSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* 3. 3D Tactile Glass Cards & Control Panels */
+.glass-card, .control-panel, .card {
+  transform-style: preserve-3d;
+  border: 1px solid var(--glass-border) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.3) !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.18) !important;
+  box-shadow: 
+    0 14px 34px -6px rgba(0, 0, 0, 0.4),
+    0 24px 52px -12px rgba(14, 165, 233, 0.12),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -2px 4px 0 rgba(0, 0, 0, 0.25) !important;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s ease, border-color 0.25s ease !important;
+  position: relative;
+}
+
+.glass-card:hover {
+  transform: translateY(-6px) translateZ(14px) rotateX(1.4deg) !important;
+  border-color: rgba(14, 165, 233, 0.5) !important;
+  border-top-color: rgba(56, 189, 248, 0.9) !important;
+  box-shadow: 
+    0 28px 60px -10px rgba(0, 0, 0, 0.65),
+    0 0 36px rgba(14, 165, 233, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.45) !important;
+}
+
+/* 4. 3D Stat Cards & Floating Medallions */
+.glass-stat-card {
+  transform-style: preserve-3d;
+  border: 1px solid var(--glass-border) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.35) !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 
+    0 16px 36px -6px rgba(0, 0, 0, 0.45),
+    0 22px 48px -10px rgba(14, 165, 233, 0.12),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -2px 4px 0 rgba(0, 0, 0, 0.25) !important;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s ease, border-color 0.25s ease !important;
+}
+
+.glass-stat-card:hover {
+  transform: translateY(-8px) translateZ(18px) rotateX(2deg) !important;
+  border-color: rgba(14, 165, 233, 0.55) !important;
+  border-top-color: rgba(56, 189, 248, 0.95) !important;
+  box-shadow: 
+    0 30px 65px -10px rgba(0, 0, 0, 0.7),
+    0 0 40px rgba(14, 165, 233, 0.35),
+    inset 0 1px 2px rgba(255, 255, 255, 0.5) !important;
+}
+
+.glass-stat-card .stat-icon-wrap {
+  transform-style: preserve-3d;
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+  box-shadow: 
+    0 6px 16px rgba(0, 0, 0, 0.35),
+    inset 0 2px 3px rgba(255, 255, 255, 0.45),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.3) !important;
+}
+
+.glass-stat-card:hover .stat-icon-wrap {
+  transform: translateZ(16px) scale(1.1) !important;
+}
+
+/* 5. 3D Tactile Push-Button System */
+/* Standard Blue/Cyan Action Button */
+.btn-action, button.go, button[type="submit"].go, .btn-hero-sos, .btn-ctrl {
+  position: relative !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.6) !important;
+  background: linear-gradient(180deg, #0ea5e9 0%, #0284c7 100%) !important;
+  box-shadow: 
+    0 5px 0 #0369a1, 
+    0 10px 24px rgba(14, 165, 233, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
+  transform: translateY(0);
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer !important;
+}
+
+.btn-action:hover, button.go:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 
+    0 7px 0 #0369a1, 
+    0 14px 30px rgba(14, 165, 233, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+}
+
+.btn-action:active, button.go:active {
+  transform: translateY(4px) !important;
+  box-shadow: 
+    0 1px 0 #0369a1, 
+    0 4px 10px rgba(14, 165, 233, 0.3),
+    inset 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* 3D Tactile Emerald / Cyan Sign In & Submit Buttons */
+#m-btn-signin, .btn-submit, .btn-delivery {
+  position: relative !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.65) !important;
+  background: linear-gradient(180deg, #10b981 0%, #059669 100%) !important;
+  box-shadow: 
+    0 5px 0 #047857, 
+    0 12px 28px rgba(16, 185, 129, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
+  transform: translateY(0);
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  cursor: pointer !important;
+}
+
+#m-btn-signin:hover, .btn-submit:hover, .btn-delivery:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 
+    0 7px 0 #047857, 
+    0 16px 36px rgba(16, 185, 129, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+}
+
+#m-btn-signin:active, .btn-submit:active, .btn-delivery:active {
+  transform: translateY(4px) !important;
+  box-shadow: 
+    0 1px 0 #047857, 
+    0 4px 10px rgba(16, 185, 129, 0.35),
+    inset 0 2px 5px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* 3D Emergency SOS Button */
+.btn-top-sos, .btn-hero-sos {
+  position: relative !important;
+  background: linear-gradient(180deg, #f43f5e 0%, #be123c 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.7) !important;
+  box-shadow: 
+    0 5px 0 #9f1239, 
+    0 10px 28px rgba(244, 63, 94, 0.55), 
+    inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
+  transform: translateY(0);
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer !important;
+}
+
+.btn-top-sos:hover, .btn-hero-sos:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 
+    0 7px 0 #9f1239, 
+    0 14px 34px rgba(244, 63, 94, 0.75), 
+    inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+}
+
+.btn-top-sos:active, .btn-hero-sos:active {
+  transform: translateY(4px) !important;
+  box-shadow: 
+    0 1px 0 #9f1239, 
+    0 4px 10px rgba(244, 63, 94, 0.4),
+    inset 0 2px 4px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* 3D Frosted Glass Button */
+.btn-glass {
+  position: relative !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.4) !important;
+  box-shadow: 
+    0 4px 0 rgba(0, 0, 0, 0.3),
+    0 8px 20px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+  transform: translateY(0);
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  transform: translateY(-2px) !important;
+  border-color: rgba(56, 189, 248, 0.5) !important;
+  box-shadow: 
+    0 6px 0 rgba(0, 0, 0, 0.35),
+    0 12px 25px rgba(14, 165, 233, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+}
+
+.btn-glass:active {
+  transform: translateY(3px) !important;
+  box-shadow: 
+    0 1px 0 rgba(0, 0, 0, 0.3),
+    0 3px 8px rgba(0, 0, 0, 0.2),
+    inset 0 2px 4px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* 6. 3D Tablet Selection Cards */
+.tablet-icon-card {
+  transform-style: preserve-3d !important;
+  border: 1px solid var(--glass-border) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 
+    0 8px 20px -4px rgba(0, 0, 0, 0.35),
+    inset 0 1px 1px rgba(255, 255, 255, 0.25),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.2) !important;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, border-color 0.2s ease !important;
+}
+
+.tablet-icon-card:hover {
+  transform: translateY(-5px) translateZ(10px) !important;
+  border-color: rgba(16, 185, 129, 0.6) !important;
+  box-shadow: 
+    0 16px 32px -6px rgba(0, 0, 0, 0.55),
+    0 0 24px rgba(16, 185, 129, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.4) !important;
+}
+
+.tablet-icon-card.active {
+  transform: translateY(-3px) translateZ(12px) !important;
+  border: 1.5px solid #10b981 !important;
+  box-shadow: 
+    0 14px 30px -4px rgba(16, 185, 129, 0.4),
+    0 0 30px rgba(16, 185, 129, 0.35),
+    inset 0 1px 1px rgba(255, 255, 255, 0.4) !important;
+}
+
+/* 7. 3D Sidebar Nav Items */
+.nav-item {
+  transform-style: preserve-3d;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.nav-item:hover {
+  transform: translateX(4px) translateZ(8px) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+.nav-item.active {
+  transform: translateX(4px) translateZ(10px) !important;
+  background: linear-gradient(90deg, rgba(16, 185, 129, 0.2) 0%, rgba(14, 165, 233, 0.1) 100%) !important;
+  border-left: 3.5px solid #10b981 !important;
+  box-shadow: 
+    0 6px 20px rgba(16, 185, 129, 0.25),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2) !important;
+}
+
+/* 8. 3D Map Container Frame */
+#map-wrap, .map-container, #map {
+  border-radius: 18px !important;
+  box-shadow: 
+    0 20px 50px -10px rgba(0, 0, 0, 0.6),
+    0 0 35px rgba(14, 165, 233, 0.15),
+    inset 0 1px 2px rgba(255, 255, 255, 0.25),
+    inset 0 0 15px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* 9. 3D Recessed Input Fields */
+.form-input, input[type="text"], input[type="password"], input[type="number"], select.form-select {
+  box-shadow: 
+    inset 0 2px 5px rgba(0, 0, 0, 0.45),
+    0 1px 0 rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  transition: all 0.2s ease !important;
+}
+
+.form-input:focus, input[type="text"]:focus, input[type="password"]:focus {
+  border-color: #10b981 !important;
+  box-shadow: 
+    inset 0 2px 4px rgba(0, 0, 0, 0.35),
+    0 0 0 3px rgba(16, 185, 129, 0.25),
+    0 0 18px rgba(16, 185, 129, 0.2) !important;
+}
+
+/* 10. 3D Login Modal Slab */
+#modal-login > .glass-card, .login-card {
+  box-shadow: 
+    0 35px 85px -15px rgba(0, 0, 0, 0.8),
+    0 0 60px rgba(16, 185, 129, 0.22),
+    inset 0 1px 2px rgba(255, 255, 255, 0.4) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.45) !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.25) !important;
+  transform: perspective(1000px) rotateX(0deg) translateY(0);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease !important;
+}
+
+/* 11. 3D Floating Kit Bar */
+#kit-bar {
+  transform-style: preserve-3d;
+  box-shadow: 
+    0 24px 50px -8px rgba(0, 0, 0, 0.65),
+    0 0 35px rgba(16, 185, 129, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.35) !important;
+  border-top: 1px solid rgba(16, 185, 129, 0.65) !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.25) !important;
+  animation: floatKitBar 5s ease-in-out infinite !important;
+}
+
+@keyframes floatKitBar {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+}
+
+/* 12. 3D Table Rows & Hover Lift */
+.radar-table tr, .table tr, .stock-table tr {
+  transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease !important;
+}
+
+.radar-table tbody tr:hover, .table tbody tr:hover {
+  transform: translateY(-2px) scale(1.002) !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* 13. Progress Bar 3D Tubes */
+.meter-fill, .progress-fill, .stat-bar-fill {
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.3),
+    0 2px 8px rgba(16, 185, 129, 0.4) !important;
+  border-radius: 999px !important;
+}
+
+.meter-track, .progress-track, .stat-bar-track {
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+  border-radius: 999px !important;
+}
+
+</style>
+</head>
+<body>
+  <div class="bg-gradient"></div>
+
+  <nav class="top-nav">
+    <a href="/" class="brand">
+      <div class="brand-logo">S</div>
+      <div class="brand-text">
+        <h1>MedRadar Kanchipuram</h1>
+        <span>Staff &amp; Administrator Login</span>
+      </div>
+    </a>
+    <a href="/" class="btn-ghost">
+      &larr; Main Dashboard
+    </a>
+  </nav>
+
+  <div class="main-wrap">
+    <div class="login-card">
+      <div class="header-section">
+        <h2>Sign In</h2>
+        <p>Enter your username and password to access the portal.</p>
+      </div>
+
+            <div class="alert-banner" id="alertBanner"></div>
+
+      <!-- Quick 1-Click Demo Login Bar -->
+      <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px; margin-bottom:18px;">
+        <div style="font-size:11px; font-weight:700; color:#94a3b8; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.05em;">⚡ 1-Click Instant Demo Sign In:</div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button type="button" class="chip" onclick="quickFillAndLogin('admin', 'admin')" style="background:rgba(14,165,233,0.18); color:#38bdf8; border:1px solid rgba(14,165,233,0.35); font-size:11.5px; font-weight:700; padding:6px 12px; border-radius:8px; cursor:pointer;">
+            🛡️ Admin (admin)
+          </button>
+          <button type="button" class="chip" onclick="quickFillAndLogin('retailer_apollo', 'apollo')" style="background:rgba(16,185,129,0.18); color:#34d399; border:1px solid rgba(16,185,129,0.35); font-size:11.5px; font-weight:700; padding:6px 12px; border-radius:8px; cursor:pointer;">
+            🏪 Retailer (apollo)
+          </button>
+          <button type="button" class="chip" onclick="quickFillAndLogin('medical_kanchi_hq', 'medical')" style="background:rgba(168,85,247,0.18); color:#c084fc; border:1px solid rgba(168,85,247,0.35); font-size:11.5px; font-weight:700; padding:6px 12px; border-radius:8px; cursor:pointer;">
+            🩺 Medical (medical)
+          </button>
+        </div>
+      </div>
+
+      <form onsubmit="handleLoginSubmit(event)">
+        <div class="form-group">
+          <label for="usernameInput">Username</label>
+          <input type="text" id="usernameInput" class="form-input" required placeholder="admin or retailer_apollo" autocomplete="username" autofocus>
+        </div>
+
+        <div class="form-group">
+          <label for="passwordInput">Password</label>
+          <input type="password" id="passwordInput" class="form-input" required placeholder="admin (or Admin@MedRadar2026)" autocomplete="current-password">
+        </div>
+
+        <button type="submit" class="btn-submit" id="btnSubmit">
+          Sign In &rarr;
+        </button>
+
+        <div style="font-size:11px; color:#64748b; margin-top:14px; text-align:center; line-height:1.5;">
+          💡 Default Passwords: <code style="color:#38bdf8; background:rgba(255,255,255,0.06); padding:1px 5px; border-radius:4px;">admin</code> or role name (e.g. <code style="color:#34d399; background:rgba(255,255,255,0.06); padding:1px 5px; border-radius:4px;">apollo</code>)
+        </div>
+      </form>
+
+      
+    </div>
+  </div>
+
+  <script>
+    function showAlert(msg, type = 'error') {
+      const banner = document.getElementById('alertBanner');
+      banner.className = `alert-banner ${type}`;
+      banner.innerText = msg;
+      banner.style.display = 'flex';
+    }
+
+    function clearAlert() {
+      const banner = document.getElementById('alertBanner');
+      banner.style.display = 'none';
+    }
+
+        function quickFillAndLogin(u, p) {
+      const uInput = document.getElementById('usernameInput');
+      const pInput = document.getElementById('passwordInput');
+      if (uInput) uInput.value = u;
+      if (pInput) pInput.value = p;
+      handleLoginSubmit();
+    }
+
+    async function handleLoginSubmit(e) {
+      if (e && typeof e.preventDefault === 'function') e.preventDefault();
+      clearAlert();
+
+      const username = document.getElementById('usernameInput').value.trim();
+      const password = document.getElementById('passwordInput').value;
+      const btn = document.getElementById('btnSubmit');
+
+      if (!username || !password) {
+        showAlert('Please enter both username and password.');
+        return;
+      }
+
+      if (btn) {
+        btn.disabled = true;
+        btn.innerText = 'Authenticating...';
+      }
+
+      function completeLogin(user, redirectUrl) {
+        showAlert(`Welcome, ${user.full_name}! Redirecting...`, 'success');
+        try { localStorage.setItem('medradar_auth_user', JSON.stringify(user)); } catch (e) {}
+        setTimeout(() => {
+          window.location.href = redirectUrl;
+        }, 500);
+      }
+
+      // 1. Try server endpoint
+      try {
+        const resp = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        if (resp.ok) {
+          const data = await resp.json();
+          if (data && data.success && data.user) {
+            completeLogin(data.user, data.redirect || '/');
+            return;
+          }
+        }
+      } catch (err) {
+        console.warn("Server login unavailable, checking offline demo credentials:", err);
+      }
+
+      // 2. Client-side fallback check
+      const uLower = username.toLowerCase();
+      const pLower = password.toLowerCase();
+
+      if (uLower === 'admin' && (pLower === 'admin' || pLower === 'admin123' || pLower === 'medradar' || pLower === 'admin@medradar2026' || pLower === 'password' || pLower === '123456')) {
+        completeLogin({
+          id: 1,
+          username: 'admin',
+          role: 'admin',
+          full_name: 'Kanchipuram Health Admin (App Owner)'
+        }, '/?view=admin');
+        return;
+      }
+
+      if ((uLower === 'retailer_apollo' || uLower === 'retailer' || uLower === 'apollo') && (pLower === 'apollo' || pLower === 'retailer' || pLower === 'apollo@retail2026' || pLower === 'admin' || pLower === 'password')) {
+        completeLogin({
+          id: 2,
+          username: 'retailer_apollo',
+          role: 'sub_admin',
+          pharmacy_id: 1,
+          full_name: 'Apollo Pharmacy Supervisor'
+        }, '/?view=retailer&pharmacy_id=1');
+        return;
+      }
+
+      if ((uLower === 'medical_kanchi_hq' || uLower === 'medical' || uLower === 'doctor') && (pLower === 'medical' || pLower === 'doctor' || pLower === 'medical@kanchi2026' || pLower === 'admin' || pLower === 'password')) {
+        completeLogin({
+          id: 3,
+          username: 'medical_kanchi_hq',
+          role: 'medical_member',
+          pharmacy_id: 4,
+          full_name: 'Dr. S. Sundararajan (Chief Pharmacist)'
+        }, '/?view=retailer&pharmacy_id=4');
+        return;
+      }
+
+      showAlert('Invalid username or password. Try username "admin" and password "admin".', 'error');
+      if (btn) {
+        btn.disabled = false;
+        btn.innerText = 'Sign In →';
+      }
+    }
+  </script>
+
+<script>
+
+// 3D Parallax Tilt & Specular Light Engine
+(function init3DTiltMaster() {
+  let isTicking = false;
+  let mouseX = 0;
+  let mouseY = 0;
+
+  document.addEventListener('mousemove', function(e) {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+    if (!isTicking) {
+      window.requestAnimationFrame(function() {
+        updateTilt();
+        isTicking = false;
+      });
+      isTicking = true;
+    }
+  });
+
+  function updateTilt() {
+    const interactiveElements = document.querySelectorAll('.glass-stat-card, .glass-card, .login-card, .glass-hero-banner, .tablet-icon-card');
+    
+    interactiveElements.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      // Only process elements visible in viewport and near cursor
+      if (rect.bottom < -50 || rect.top > window.innerHeight + 50) return;
+      
+      const buffer = 40;
+      if (mouseX >= rect.left - buffer && mouseX <= rect.right + buffer &&
+          mouseY >= rect.top - buffer && mouseY <= rect.bottom + buffer) {
+        
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const deltaX = (mouseX - centerX) / (rect.width / 2);
+        const deltaY = (mouseY - centerY) / (rect.height / 2);
+        
+        // Gentle, high-fidelity 3D tilt
+        const maxTilt = el.classList.contains('glass-stat-card') ? 5 : (el.classList.contains('glass-hero-banner') ? 2 : 3.5);
+        const tiltX = -deltaY * maxTilt;
+        const tiltY = deltaX * maxTilt;
+        const lift = el.classList.contains('glass-stat-card') ? 12 : 8;
+        
+        el.style.transform = `perspective(1200px) rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg) translateZ(${lift}px)`;
+      } else {
+        if (el.style.transform && el.style.transform.includes('rotateX')) {
+          el.style.transform = '';
+        }
+      }
+    });
+  }
+})();
+
+</script>
+</body>
+</html>
